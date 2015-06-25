@@ -1,5 +1,10 @@
 Posts = new Mongo.Collection('posts');
 
+Posts.allow({
+  update: ownsDocument,
+  remove: ownsDocument
+});
+
 Meteor.methods({
   postInsert: function(postAttributes) {
     check(Meteor.userId(), String);
@@ -14,7 +19,7 @@ Meteor.methods({
         _id: postWithSameLink._id
       }
     }
-    
+
     var user = Meteor.user();
     var post = _.extend(postAttributes, {
       userId: user._id, 
