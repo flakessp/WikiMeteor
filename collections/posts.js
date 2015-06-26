@@ -1,4 +1,5 @@
 Posts = new Mongo.Collection('posts');
+Comments = new Meteor.Collection('Comments');
 
 Posts.allow({
   update: ownsDocument,
